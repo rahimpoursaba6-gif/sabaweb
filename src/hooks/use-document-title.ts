@@ -8,4 +8,4 @@ export function useDocumentTitle(title: string) {
 }
 
 /** Shared suffix for every page title. */
-export const SITE_NAME = 'Horizon Properties'
+export const SITE_NAME = 'هورایزن پراپرتیز'

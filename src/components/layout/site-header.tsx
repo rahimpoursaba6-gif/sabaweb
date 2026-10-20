@@ -55,13 +55,13 @@ export function SiteHeader() {
         <Link
           to="/"
           className="shrink-0"
-          aria-label="Horizon Properties — home"
+          aria-label="هورایزن پراپرتیز — خانه"
           onClick={() => setIsMenuOpen(false)}
         >
           <BrandMark tone={onDark ? 'light' : 'dark'} />
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:block">
+        <nav aria-label="ناوبری اصلی" className="hidden lg:block">
           <ul className="flex items-center gap-9">
             {NAV_LINKS.map((link) => (
               <li key={link.to}>
@@ -70,8 +70,8 @@ export function SiteHeader() {
                   end={link.to === '/'}
                   className={({ isActive }) =>
                     cn(
-                      'relative inline-block py-1 text-[13.5px] font-medium transition-colors duration-300',
-                      'after:absolute after:-bottom-0.5 after:left-0 after:h-px after:bg-champagne after:transition-[width] after:duration-300 after:ease-editorial',
+                      'relative inline-block py-1 text-[14px] font-medium transition-colors duration-300',
+                      'after:absolute after:-bottom-0.5 after:start-0 after:h-px after:bg-champagne after:transition-[width] after:duration-300 after:ease-editorial',
                       onDark
                         ? cn('text-white/80 hover:text-white', isActive && 'text-white')
                         : cn('text-navy-900/75 hover:text-navy-900', isActive && 'text-navy-900'),
@@ -94,7 +94,7 @@ export function SiteHeader() {
             className="hidden sm:inline-flex"
           >
             <Phone className="h-3.5 w-3.5" aria-hidden="true" />
-            {CONTACT.phoneLabel}
+            <span dir="ltr">{CONTACT.phoneLabel}</span>
           </Button>
 
           <button
@@ -102,7 +102,7 @@ export function SiteHeader() {
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
-            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-label={isMenuOpen ? 'بستن منوی ناوبری' : 'باز کردن منوی ناوبری'}
             className={cn(
               'inline-flex h-10 w-10 items-center justify-center rounded-md border transition-colors duration-300 lg:hidden',
               onDark
@@ -150,7 +150,7 @@ export function SiteHeader() {
           </ul>
           <Button href={CONTACT.phoneHref} variant="light" className="my-7 w-full">
             <Phone className="h-4 w-4" aria-hidden="true" />
-            {CONTACT.phoneLabel}
+            <span dir="ltr">{CONTACT.phoneLabel}</span>
           </Button>
         </div>
       </div>

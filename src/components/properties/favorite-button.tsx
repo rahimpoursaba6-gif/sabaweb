@@ -19,8 +19,8 @@ export function FavoriteButton({ slug, name, className, size = 'md' }: FavoriteB
     <button
       type="button"
       aria-pressed={isSaved}
-      aria-label={isSaved ? `Remove ${name} from saved properties` : `Save ${name} to saved properties`}
-      title={isSaved ? 'Remove from saved' : 'Save property'}
+      aria-label={isSaved ? `حذف ${name} از املاک ذخیره‌شده` : `ذخیره ${name} در املاک ذخیره‌شده`}
+      title={isSaved ? 'حذف از ذخیره‌شده‌ها' : 'ذخیره ملک'}
       onClick={(event) => {
         event.preventDefault()
         event.stopPropagation()

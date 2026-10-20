@@ -17,27 +17,27 @@ export function NewsletterForm() {
 
     if (!EMAIL_PATTERN.test(value)) {
       setStatus('error')
-      setMessage('Please enter a valid email address.')
+      setMessage('لطفاً یک ایمیل معتبر وارد کنید.')
       return
     }
 
     setStatus('success')
-    setMessage('Thank you — new listings and market notes will arrive in your inbox.')
+    setMessage('سپاسگزاریم — فهرست‌های تازه و یادداشت‌های بازار به صندوق شما می‌رسد.')
     setEmail('')
   }
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_minmax(0,26rem)] lg:items-center">
       <div>
-        <h2 className="font-display text-lg font-medium text-white">New listings, first</h2>
-        <p className="mt-2 max-w-md text-sm leading-relaxed">
-          One considered email a month: off-market residences, market notes and nothing else.
+        <h2 className="font-display text-lg font-medium text-white">فهرست‌های تازه، پیش از همه</h2>
+        <p className="mt-2 max-w-md text-sm leading-loose">
+          ماهی یک ایمیل سنجیده: اقامتگاه‌های خارج از بازار، یادداشت‌های بازار و نه چیز دیگر.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} noValidate className="w-full">
         <label htmlFor="newsletter-email" className="sr-only">
-          Email address
+          نشانی ایمیل
         </label>
         <div className="flex flex-col gap-3 sm:flex-row">
           <input
@@ -55,7 +55,7 @@ export function NewsletterForm() {
             })}
           />
           <Button type="submit" variant="champagne" className="shrink-0">
-            Subscribe
+            عضویت
           </Button>
         </div>
         <p

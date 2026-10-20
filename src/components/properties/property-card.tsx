@@ -4,6 +4,7 @@ import { FavoriteButton } from '@/components/properties/favorite-button'
 import { formatPrice } from '@/data/properties'
 import type { Property } from '@/data/properties'
 import { cn } from '@/lib/cn'
+import { fa } from '@/lib/fa'
 
 type PropertyCardProps = {
   property: Property
@@ -41,12 +42,12 @@ export function PropertyCard({ property, variant = 'grid', className, priority =
             className="image-zoom h-full w-full object-cover"
           />
         </span>
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-900 backdrop-blur">
+        <span className="absolute start-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-[0.04em] text-navy-900 backdrop-blur">
           {property.type}
         </span>
       </Link>
 
-      <FavoriteButton slug={property.slug} name={property.name} className="absolute right-3 top-3" />
+      <FavoriteButton slug={property.slug} name={property.name} className="absolute end-3 top-3" />
 
       <div className="mt-4 flex flex-1 flex-col">
         <h3 className="font-display text-[17px] font-medium leading-snug text-ink">
@@ -61,7 +62,7 @@ export function PropertyCard({ property, variant = 'grid', className, priority =
 
         {variant === 'grid' ? (
           <p className="mt-3 text-[12.5px] text-graphite/65">
-            {property.beds} bd · {property.baths} ba · {property.sqft.toLocaleString('en-US')} sq ft
+            {fa(property.beds)} خواب · {fa(property.baths)} حمام · {fa(property.sqft)} فوت مربع
           </p>
         ) : null}
 

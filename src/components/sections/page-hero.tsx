@@ -36,7 +36,7 @@ export function PageHero({ label, title, description, image, crumbs, children }:
 
       <div className="shell relative">
         {crumbs && crumbs.length > 0 ? (
-          <nav aria-label="Breadcrumb" className="mb-7">
+          <nav aria-label="مسیر صفحه" className="mb-7">
             <ol className="flex flex-wrap items-center gap-1.5 text-[11px] font-medium uppercase tracking-label text-white/50">
               {crumbs.map((crumb, index) => (
                 <li key={`${crumb.label}-${index}`} className="flex items-center gap-1.5">
@@ -48,7 +48,7 @@ export function PageHero({ label, title, description, image, crumbs, children }:
                     <span className="text-white/80">{crumb.label}</span>
                   )}
                   {index < crumbs.length - 1 ? (
-                    <ChevronRight className="h-3 w-3 text-white/30" aria-hidden="true" />
+                    <ChevronRight className="h-3 w-3 text-white/30 rtl:-scale-x-100" aria-hidden="true" />
                   ) : null}
                 </li>
               ))}
@@ -59,12 +59,12 @@ export function PageHero({ label, title, description, image, crumbs, children }:
         <p className="eyebrow text-champagne-light">{label}</p>
         <h1
           className={cn(
-            'mt-4 max-w-4xl font-display text-[clamp(2rem,4.6vw,3.4rem)] font-medium leading-[1.1] tracking-[-0.02em] text-white',
+            'mt-4 max-w-4xl font-display text-[clamp(1.85rem,4.4vw,3.3rem)] font-medium leading-[1.25] text-white',
           )}
         >
           {title}
         </h1>
-        {description ? <div className="mt-6 max-w-2xl text-[15px] leading-[1.75] text-white/70">{description}</div> : null}
+        {description ? <div className="mt-6 max-w-2xl text-[15px] leading-loose text-white/70">{description}</div> : null}
         {children ? <div className="mt-9">{children}</div> : null}
       </div>
     </section>

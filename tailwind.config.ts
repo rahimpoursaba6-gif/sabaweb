@@ -24,15 +24,18 @@ export default {
         ink: '#0D1B2A',
         graphite: '#4A4A4A',
       },
+      // Vazirmatn sits behind the latin faces: Persian glyphs fall through to it,
+      // while the latin brand mark and numerals keep their original typography.
       fontFamily: {
-        display: ['Jost', 'Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Jost', 'Vazirmatn', 'Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        sans: ['Inter', 'Vazirmatn', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       maxWidth: {
         content: '1280px',
       },
+      // Persian letterforms are joined, so label tracking stays subtle.
       letterSpacing: {
-        label: '0.22em',
+        label: '0.08em',
       },
       transitionTimingFunction: {
         editorial: 'cubic-bezier(0.16, 1, 0.3, 1)',

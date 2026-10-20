@@ -17,14 +17,17 @@ export function CtaSection() {
                 <h2 id="cta-heading" className="display-md">
                   {CTA_BANNER.headline}
                 </h2>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-graphite/85">
+                <p className="mt-3 max-w-xl text-sm leading-loose text-graphite/85">
                   {CTA_BANNER.description}
                 </p>
               </div>
             </div>
             <Button to={CTA_BANNER.button.to} size="lg" className="shrink-0">
               {CTA_BANNER.button.label}
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-1" aria-hidden="true" />
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 group-hover/button:-translate-x-1 rtl:-scale-x-100"
+                aria-hidden="true"
+              />
             </Button>
           </div>
         </div>

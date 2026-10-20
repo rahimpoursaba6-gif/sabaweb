@@ -18,6 +18,9 @@ type ScrollCarouselProps = {
  * Native scroll-snap track with pointer dragging for desktop, touch swiping for
  * mobile, arrow buttons and keyboard support (the track itself is focusable, so
  * arrow keys scroll it). No carousel dependency.
+ *
+ * The track scrolls along the inline axis, so distances are measured with
+ * `Math.abs(scrollLeft)` and page steps are negated on an RTL track.
  */
 export function ScrollCarousel({ children, label, className }: ScrollCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -28,8 +31,10 @@ export function ScrollCarousel({ children, label, className }: ScrollCarouselPro
   const syncEdges = useCallback(() => {
     const track = trackRef.current
     if (!track) return
-    setAtStart(track.scrollLeft <= 4)
-    setAtEnd(track.scrollLeft + track.clientWidth >= track.scrollWidth - 4)
+    const offset = Math.abs(track.scrollLeft)
+    const maxOffset = track.scrollWidth - track.clientWidth
+    setAtStart(offset <= 4)
+    setAtEnd(offset >= maxOffset - 4)
   }, [])
 
   useEffect(() => {
@@ -50,7 +55,8 @@ export function ScrollCarousel({ children, label, className }: ScrollCarouselPro
     const track = trackRef.current
     if (!track) return
     const step = Math.max(track.clientWidth * 0.75, 300)
-    track.scrollBy({ left: step * direction, behavior: 'smooth' })
+    const forward = getComputedStyle(track).direction === 'rtl' ? -1 : 1
+    track.scrollBy({ left: step * direction * forward, behavior: 'smooth' })
   }
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -109,27 +115,27 @@ export function ScrollCarousel({ children, label, className }: ScrollCarouselPro
         {children}
       </div>
 
-      <div className="pointer-events-none absolute -left-1 top-1/2 hidden -translate-y-1/2 sm:block">
+      <div className="pointer-events-none absolute -start-1 top-1/2 hidden -translate-y-1/2 sm:block">
         <button
           type="button"
           onClick={() => scrollByPage(-1)}
           disabled={atStart}
-          aria-label="Show previous properties"
+          aria-label="نمایش املاک پیشین"
           className={cn(arrowClassName, 'pointer-events-auto')}
         >
-          <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+          <ChevronLeft className="h-5 w-5 rtl:-scale-x-100" aria-hidden="true" />
         </button>
       </div>
 
-      <div className="pointer-events-none absolute -right-1 top-1/2 hidden -translate-y-1/2 sm:block">
+      <div className="pointer-events-none absolute -end-1 top-1/2 hidden -translate-y-1/2 sm:block">
         <button
           type="button"
           onClick={() => scrollByPage(1)}
           disabled={atEnd}
-          aria-label="Show more properties"
+          aria-label="نمایش املاک بیشتر"
           className={cn(arrowClassName, 'pointer-events-auto')}
         >
-          <ChevronRight className="h-5 w-5" aria-hidden="true" />
+          <ChevronRight className="h-5 w-5 rtl:-scale-x-100" aria-hidden="true" />
         </button>
       </div>
 

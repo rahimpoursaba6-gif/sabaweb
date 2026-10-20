@@ -12,14 +12,14 @@ export function FeaturedProperties() {
       <div className="shell">
         <SectionHeading
           align="center"
-          label="Featured"
-          title={<span id="featured-properties-heading">Featured Properties</span>}
-          description="A short list from the current portfolio — each residence visited, valued and photographed by our advisors."
+          label="ویژه"
+          title={<span id="featured-properties-heading">املاک ویژه</span>}
+          description="فهرستی کوتاه از مجموعه کنونی — هر اقامتگاه توسط مشاوران ما بازدید، ارزش‌گذاری و عکاسی شده است."
         />
       </div>
 
       <div className="shell mt-12 lg:mt-14">
-        <ScrollCarousel label="Featured properties">
+        <ScrollCarousel label="املاک ویژه">
           {FEATURED_PROPERTIES.map((property, index) => (
             <div
               key={property.id}
@@ -33,8 +33,11 @@ export function FeaturedProperties() {
 
       <div className="shell mt-12 flex justify-center">
         <Button to="/properties" variant="outline" size="lg">
-          View all properties
-          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-1" aria-hidden="true" />
+          مشاهده همه املاک
+          <ArrowRight
+            className="h-4 w-4 transition-transform duration-300 group-hover/button:-translate-x-1 rtl:-scale-x-100"
+            aria-hidden="true"
+          />
         </Button>
       </div>
     </section>

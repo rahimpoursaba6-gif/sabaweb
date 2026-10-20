@@ -11,9 +11,9 @@ export function TeamSection() {
       <div className="shell">
         <SectionHeading
           align="center"
-          label="Our Team"
-          title={<span id="team-heading">Advisors, not agents</span>}
-          description="Four specialists, each with a defined discipline — so you always speak to the person who knows your market."
+          label="تیم ما"
+          title={<span id="team-heading">مشاور، نه واسطه</span>}
+          description="چهار متخصص، هر یک با تخصصی مشخص — تا همیشه با کسی سخن بگویید که بازار شما را می‌شناسد."
         />
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7">
@@ -23,7 +23,7 @@ export function TeamSection() {
                 <figure className="m-0 overflow-hidden rounded-[10px] bg-mist">
                   <img
                     src={member.image}
-                    alt={`${member.name}, ${member.role}`}
+                    alt={`${member.name}، ${member.role}`}
                     width={900}
                     height={1125}
                     loading="lazy"
@@ -32,21 +32,21 @@ export function TeamSection() {
                   />
                 </figure>
                 <h3 className="mt-5 font-display text-lg font-medium text-ink">{member.name}</h3>
-                <p className="mt-1.5 font-sans text-[10.5px] font-semibold uppercase tracking-label text-champagne">
+                <p className="mt-1.5 font-sans text-[11px] font-semibold uppercase tracking-label text-champagne">
                   {member.role}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-graphite/75">{member.focus}</p>
+                <p className="mt-3 text-sm leading-loose text-graphite/75">{member.focus}</p>
                 <div className="mt-4 flex gap-2.5">
                   <a
                     href={`mailto:${member.email}`}
-                    aria-label={`Email ${member.name}`}
+                    aria-label={`ارسال ایمیل به ${member.name}`}
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-graphite transition-colors duration-300 hover:border-champagne hover:text-champagne"
                   >
                     <Mail className="h-4 w-4" aria-hidden="true" />
                   </a>
                   <a
                     href={member.phoneHref}
-                    aria-label={`Call ${member.name}`}
+                    aria-label={`تماس تلفنی با ${member.name}`}
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-graphite transition-colors duration-300 hover:border-champagne hover:text-champagne"
                   >
                     <Phone className="h-4 w-4" aria-hidden="true" />
@@ -59,7 +59,7 @@ export function TeamSection() {
 
         <div className="mt-14 flex justify-center">
           <Button to="/team" variant="outline" size="lg">
-            Meet the team
+            آشنایی با تیم
           </Button>
         </div>
       </div>

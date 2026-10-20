@@ -6,23 +6,39 @@ import { WhyChooseSection } from '@/components/sections/why-choose-section'
 import { SITE_NAME, useDocumentTitle } from '@/hooks/use-document-title'
 
 const MILESTONES = [
-  { year: '2008', title: 'Founded in Austin', description: 'Two advisors, one office and a list of twelve private clients.' },
-  { year: '2014', title: 'Investment desk opens', description: 'A dedicated advisory practice for yield and portfolio buyers.' },
-  { year: '2019', title: 'Cross-border practice', description: 'Buyers in thirty-two markets, with multilingual representation.' },
-  { year: '2024', title: 'The Horizon House', description: 'A permanent home for viewings, valuations and client evenings.' },
+  {
+    year: '۲۰۰۸',
+    title: 'بنیان‌گذاری در آستین',
+    description: 'دو مشاور، یک دفتر و فهرستی از دوازده مشتری خصوصی.',
+  },
+  {
+    year: '۲۰۱۴',
+    title: 'راه‌اندازی بخش سرمایه‌گذاری',
+    description: 'واحدی اختصاصی برای مشاوره بازدهی و خریداران سبد دارایی.',
+  },
+  {
+    year: '۲۰۱۹',
+    title: 'فعالیت فرامرزی',
+    description: 'خریدارانی در سی‌ودو بازار، با نمایندگی چندزبانه.',
+  },
+  {
+    year: '۲۰۲۴',
+    title: 'خانه هورایزن',
+    description: 'خانه‌ای دائمی برای بازدیدها، ارزش‌گذاری‌ها و شب‌های مشتریان.',
+  },
 ]
 
 export default function AboutPage() {
-  useDocumentTitle(`About Us — ${SITE_NAME}`)
+  useDocumentTitle(`درباره ما — ${SITE_NAME}`)
 
   return (
     <>
       <PageHero
-        label="About Us"
-        title="A brokerage built around architecture, not inventory"
-        description="Horizon Properties represents a small, deliberate portfolio of residences and investments. We take on fewer listings so that each one gets the attention it deserves."
+        label="درباره ما"
+        title="دفتری که گرد معماری ساخته شده، نه گرد فهرست ملک"
+        description="هورایزن پراپرتیز مجموعه‌ای کوچک و آگاهانه از خانه‌ها و سرمایه‌گذاری‌ها را نمایندگی می‌کند. ما ملک کمتری می‌پذیریم تا هر یک از آن‌ها توجهی را که شایسته‌اش است دریافت کند."
         image="/images/estate-03.jpg"
-        crumbs={[{ label: 'Home', to: '/' }, { label: 'About Us' }]}
+        crumbs={[{ label: 'خانه', to: '/' }, { label: 'درباره ما' }]}
       />
 
       <AboutSection />
@@ -30,7 +46,7 @@ export default function AboutPage() {
       <section aria-labelledby="milestones-heading" className="bg-white pb-20 lg:pb-28">
         <div className="shell">
           <h2 id="milestones-heading" className="eyebrow">
-            Our Story
+            داستان ما
           </h2>
           <ol className="mt-10 grid list-none gap-10 border-t border-ink/10 pt-10 sm:grid-cols-2 lg:grid-cols-4">
             {MILESTONES.map((milestone) => (

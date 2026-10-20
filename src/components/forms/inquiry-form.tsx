@@ -22,7 +22,7 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
     name: '',
     email: '',
     phone: '',
-    message: propertyName ? `I would like more information about ${propertyName}.` : '',
+    message: propertyName ? `درباره ${propertyName} اطلاعات بیشتری می‌خواهم.` : '',
   })
   const [errors, setErrors] = useState<FieldErrors>({})
   const [isSent, setIsSent] = useState(false)
@@ -35,9 +35,9 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
     event.preventDefault()
 
     const nextErrors: FieldErrors = {}
-    if (values.name.trim().length < 2) nextErrors.name = 'Please tell us your name.'
-    if (!EMAIL_PATTERN.test(values.email.trim())) nextErrors.email = 'Please enter a valid email address.'
-    if (values.message.trim().length < 10) nextErrors.message = 'A short note helps us prepare — 10 characters minimum.'
+    if (values.name.trim().length < 2) nextErrors.name = 'لطفاً نام خود را بنویسید.'
+    if (!EMAIL_PATTERN.test(values.email.trim())) nextErrors.email = 'لطفاً یک ایمیل معتبر وارد کنید.'
+    if (values.message.trim().length < 10) nextErrors.message = 'یادداشت کوتاهی به ما کمک می‌کند آماده شویم — حداقل ۱۰ نویسه.'
 
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
@@ -46,7 +46,7 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
   }
 
   const heading =
-    title ?? (intent === 'viewing' ? 'Request a viewing' : propertyName ? 'Ask about this property' : 'Send us a message')
+    title ?? (intent === 'viewing' ? 'درخواست بازدید' : propertyName ? 'پرسش درباره این ملک' : 'برای ما پیام بفرستید')
 
   if (isSent) {
     return (
@@ -54,11 +54,11 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
         <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-champagne text-white">
           <Check className="h-6 w-6" aria-hidden="true" />
         </span>
-        <h2 className="mt-5 font-display text-xl font-medium text-ink">Thank you, {values.name.split(' ')[0]}</h2>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-graphite/85">
+        <h2 className="mt-5 font-display text-xl font-medium text-ink">سپاسگزاریم، {values.name.split(' ')[0]}</h2>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-loose text-graphite/85">
           {intent === 'viewing'
-            ? 'Your viewing request is with the advisor for this residence. They will confirm a time within one business day.'
-            : 'Your message has reached the Horizon team. An advisor will reply within one business day.'}
+            ? 'درخواست بازدید شما نزد مشاور این اقامتگاه است. او زمان را در یک روز کاری تأیید می‌کند.'
+            : 'پیام شما به تیم هورایزن رسید. یکی از مشاوران در یک روز کاری پاسخ می‌دهد.'}
         </p>
       </div>
     )
@@ -67,10 +67,10 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
   return (
     <form onSubmit={handleSubmit} noValidate className="rounded-[12px] border border-ink/10 bg-white p-6 sm:p-8">
       <h2 className="font-display text-xl font-medium text-ink">{heading}</h2>
-      {description ? <p className="mt-2 text-sm leading-relaxed text-graphite/80">{description}</p> : null}
+      {description ? <p className="mt-2 text-sm leading-loose text-graphite/80">{description}</p> : null}
 
       <div className="mt-7 grid gap-5 sm:grid-cols-2">
-        <Field id="inquiry-name" label="Full name">
+        <Field id="inquiry-name" label="نام و نام خانوادگی">
           <input
             id="inquiry-name"
             name="name"
@@ -88,12 +88,13 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
           ) : null}
         </Field>
 
-        <Field id="inquiry-email" label="Email">
+        <Field id="inquiry-email" label="ایمیل">
           <input
             id="inquiry-email"
             name="email"
             type="email"
             autoComplete="email"
+            placeholder="you@example.com"
             value={values.email}
             onChange={update('email')}
             aria-invalid={Boolean(errors.email)}
@@ -107,7 +108,7 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
           ) : null}
         </Field>
 
-        <Field id="inquiry-phone" label="Phone (optional)" className="sm:col-span-2">
+        <Field id="inquiry-phone" label="تلفن (اختیاری)" className="sm:col-span-2">
           <input
             id="inquiry-phone"
             name="phone"
@@ -119,7 +120,7 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
           />
         </Field>
 
-        <Field id="inquiry-message" label="Message" className="sm:col-span-2">
+        <Field id="inquiry-message" label="پیام" className="sm:col-span-2">
           <textarea
             id="inquiry-message"
             name="message"
@@ -139,11 +140,11 @@ export function InquiryForm({ propertyName, title, description, intent = 'enquir
       </div>
 
       <Button type="submit" size="lg" className="mt-7 w-full sm:w-auto">
-        <Send className="h-4 w-4" aria-hidden="true" />
-        {intent === 'viewing' ? 'Request viewing' : 'Send message'}
+        <Send className="h-4 w-4 rtl:-scale-x-100" aria-hidden="true" />
+        {intent === 'viewing' ? 'درخواست بازدید' : 'ارسال پیام'}
       </Button>
-      <p className="mt-4 text-xs text-graphite/60">
-        We reply within one business day. Your details are never shared with third parties.
+      <p className="mt-4 text-xs leading-relaxed text-graphite/60">
+        در یک روز کاری پاسخ می‌دهیم. اطلاعات شما هرگز با اشخاص ثالث به اشتراک گذاشته نمی‌شود.
       </p>
     </form>
   )

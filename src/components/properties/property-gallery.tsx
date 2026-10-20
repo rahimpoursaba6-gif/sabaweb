@@ -11,9 +11,12 @@ type PropertyGalleryProps = {
   name: string
 }
 
+const isRtl = () => document.documentElement.dir === 'rtl'
+
 /**
  * Gallery with thumbnail navigation and a full-screen viewer (arrow keys,
  * Escape, backdrop click). Only the main image is eager-loaded.
+ * Arrow keys follow the reading direction: in RTL, `←` moves forward.
  */
 export function PropertyGallery({ images, name }: PropertyGalleryProps) {
   const total = images.length
@@ -36,10 +39,12 @@ export function PropertyGallery({ images, name }: PropertyGalleryProps) {
     document.body.style.overflow = 'hidden'
     closeButtonRef.current?.focus()
 
+    const rtl = isRtl()
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setIsOpen(false)
-      if (event.key === 'ArrowRight') step(1)
-      if (event.key === 'ArrowLeft') step(-1)
+      if (event.key === 'ArrowRight') step(rtl ? -1 : 1)
+      if (event.key === 'ArrowLeft') step(rtl ? 1 : -1)
     }
 
     window.addEventListener('keydown', handleKeyDown)
@@ -70,24 +75,24 @@ export function PropertyGallery({ images, name }: PropertyGalleryProps) {
 
         <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 sm:inset-x-5 sm:bottom-5">
           <span className="rounded-full bg-navy-950/55 px-3.5 py-1.5 text-[11px] font-medium tracking-wide text-white backdrop-blur">
-            {index + 1} / {total}
+            {(index + 1).toLocaleString('fa-IR')} / {total.toLocaleString('fa-IR')}
           </span>
           <div className="flex gap-2">
             <button
               type="button"
               onClick={() => step(-1)}
-              aria-label="Show previous photo"
+              aria-label="تصویر پیشین"
               className={navButtonClassName}
             >
-              <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+              <ChevronLeft className="h-5 w-5 rtl:-scale-x-100" aria-hidden="true" />
             </button>
             <button
               type="button"
               onClick={() => step(1)}
-              aria-label="Show next photo"
+              aria-label="تصویر بعدی"
               className={navButtonClassName}
             >
-              <ChevronRight className="h-5 w-5" aria-hidden="true" />
+              <ChevronRight className="h-5 w-5 rtl:-scale-x-100" aria-hidden="true" />
             </button>
             <button
               ref={openButtonRef}
@@ -95,9 +100,9 @@ export function PropertyGallery({ images, name }: PropertyGalleryProps) {
               onClick={() => setIsOpen(true)}
               className="inline-flex h-11 items-center gap-2 rounded-full border border-white/40 bg-navy-950/45 px-4 text-[13px] font-medium text-white backdrop-blur transition-colors duration-300 hover:bg-navy-950/80"
             >
-              <Expand className="h-4 w-4" aria-hidden="true" />
-              <span className="hidden sm:inline">View all photos</span>
-              <span className="sm:hidden">Photos</span>
+              <Expand className="h-4 w-4 rtl:-scale-x-100" aria-hidden="true" />
+              <span className="hidden sm:inline">مشاهده همه تصاویر</span>
+              <span className="sm:hidden">تصاویر</span>
             </button>
           </div>
         </div>
@@ -109,7 +114,7 @@ export function PropertyGallery({ images, name }: PropertyGalleryProps) {
             <button
               type="button"
               onClick={() => setIndex(imageIndex)}
-              aria-label={`Show photo ${imageIndex + 1}: ${image.alt}`}
+              aria-label={`نمایش تصویر ${(imageIndex + 1).toLocaleString('fa-IR')}: ${image.alt}`}
               aria-current={imageIndex === index}
               className={cn(
                 'block h-16 w-24 overflow-hidden rounded-md border-2 transition-all duration-300 sm:h-20 sm:w-28',
@@ -129,21 +134,21 @@ export function PropertyGallery({ images, name }: PropertyGalleryProps) {
             <div
               role="dialog"
               aria-modal="true"
-              aria-label={`${name} photo viewer`}
+              aria-label={`نمایشگر تصاویر ${name}`}
               className="fixed inset-0 z-[90] flex flex-col bg-navy-950/97 p-4 sm:p-6"
             >
               <div className="flex items-center justify-between gap-4 text-white">
                 <p className="text-sm">
                   <span className="font-medium">{name}</span>
-                  <span className="ml-3 text-white/60">
-                    {index + 1} / {total}
+                  <span className="ms-3 text-white/60">
+                    {(index + 1).toLocaleString('fa-IR')} / {total.toLocaleString('fa-IR')}
                   </span>
                 </p>
                 <button
                   ref={closeButtonRef}
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  aria-label="Close photo viewer"
+                  aria-label="بستن نمایشگر تصاویر"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors duration-300 hover:bg-white/10"
                 >
                   <X className="h-5 w-5" aria-hidden="true" />
@@ -154,10 +159,10 @@ export function PropertyGallery({ images, name }: PropertyGalleryProps) {
                 <button
                   type="button"
                   onClick={() => step(-1)}
-                  aria-label="Show previous photo"
-                  className="absolute left-0 z-10 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 text-white transition-colors duration-300 hover:bg-white/10"
+                  aria-label="تصویر پیشین"
+                  className="absolute start-0 z-10 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 text-white transition-colors duration-300 hover:bg-white/10"
                 >
-                  <ChevronLeft className="h-6 w-6" aria-hidden="true" />
+                  <ChevronLeft className="h-6 w-6 rtl:-scale-x-100" aria-hidden="true" />
                 </button>
                 <img
                   src={active.src}
@@ -167,10 +172,10 @@ export function PropertyGallery({ images, name }: PropertyGalleryProps) {
                 <button
                   type="button"
                   onClick={() => step(1)}
-                  aria-label="Show next photo"
-                  className="absolute right-0 z-10 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 text-white transition-colors duration-300 hover:bg-white/10"
+                  aria-label="تصویر بعدی"
+                  className="absolute end-0 z-10 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 text-white transition-colors duration-300 hover:bg-white/10"
                 >
-                  <ChevronRight className="h-6 w-6" aria-hidden="true" />
+                  <ChevronRight className="h-6 w-6 rtl:-scale-x-100" aria-hidden="true" />
                 </button>
               </div>
 
@@ -180,7 +185,7 @@ export function PropertyGallery({ images, name }: PropertyGalleryProps) {
                     <button
                       type="button"
                       onClick={() => setIndex(imageIndex)}
-                      aria-label={`Show photo ${imageIndex + 1}`}
+                      aria-label={`نمایش تصویر ${(imageIndex + 1).toLocaleString('fa-IR')}`}
                       aria-current={imageIndex === index}
                       className={cn(
                         'block h-14 w-20 overflow-hidden rounded border-2 transition-opacity duration-300',

@@ -1,4 +1,6 @@
-/* Self-hosted webfonts (latin subset) — no runtime request to a font CDN. */
+/* Self-hosted webfonts — no runtime request to a font CDN.
+   Inter + Jost carry the latin text (brand mark, numerals, emails);
+   Vazirmatn carries every Persian glyph, falling through per-script. */
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/Inter-400.woff2') format('woff2'); }
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/Inter-500.woff2') format('woff2'); }
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/Inter-600.woff2') format('woff2'); }
@@ -6,3 +8,7 @@
 @font-face { font-family: 'Jost'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/Jost-400.woff2') format('woff2'); }
 @font-face { font-family: 'Jost'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/Jost-500.woff2') format('woff2'); }
 @font-face { font-family: 'Jost'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/Jost-600.woff2') format('woff2'); }
+@font-face { font-family: 'Vazirmatn'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/Vazirmatn-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'Vazirmatn'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/Vazirmatn-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'Vazirmatn'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/Vazirmatn-SemiBold.woff2') format('woff2'); }
+@font-face { font-family: 'Vazirmatn'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/Vazirmatn-Bold.woff2') format('woff2'); }

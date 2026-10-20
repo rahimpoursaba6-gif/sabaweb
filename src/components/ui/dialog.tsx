@@ -78,7 +78,7 @@ export function Dialog({ open, onClose, title, description, children, className 
     <div className="fixed inset-0 z-[80] flex items-end justify-center sm:items-center sm:p-6">
       <button
         type="button"
-        aria-label="Close dialog"
+        aria-label="بستن پنجره"
         tabIndex={-1}
         onClick={onClose}
         className="absolute inset-0 h-full w-full cursor-default bg-navy-950/70 backdrop-blur-sm"
@@ -96,12 +96,12 @@ export function Dialog({ open, onClose, title, description, children, className 
         <div className="flex items-start justify-between gap-6">
           <div>
             <h2 className="font-display text-xl font-medium text-ink">{title}</h2>
-            {description ? <p className="mt-2 text-sm leading-relaxed text-graphite/80">{description}</p> : null}
+            {description ? <p className="mt-2 text-sm leading-loose text-graphite/80">{description}</p> : null}
           </div>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close dialog"
+            aria-label="بستن"
             className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/15 text-graphite transition-colors duration-300 hover:border-navy-900 hover:text-navy-900"
           >
             <X className="h-4 w-4" aria-hidden="true" />

@@ -21,10 +21,13 @@ export function AboutSection() {
             {ABOUT.title}
           </h2>
           <p className="body-lg mt-6 max-w-xl text-graphite">{ABOUT.body}</p>
-          <p className="mt-4 max-w-xl text-[15px] leading-[1.7] text-graphite/75">{ABOUT.secondary}</p>
+          <p className="mt-4 max-w-xl text-[15px] leading-loose text-graphite/75">{ABOUT.secondary}</p>
           <Button to={ABOUT.cta.to} className="mt-9">
             {ABOUT.cta.label}
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-1" aria-hidden="true" />
+            <ArrowRight
+              className="h-4 w-4 transition-transform duration-300 group-hover/button:-translate-x-1 rtl:-scale-x-100"
+              aria-hidden="true"
+            />
           </Button>
         </Reveal>
 
@@ -59,14 +62,14 @@ export function AboutSection() {
           <button
             type="button"
             onClick={() => setIndex((value) => (value + 1) % total)}
-            aria-label="Show the next image"
-            className="absolute -bottom-5 left-[46%] inline-flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-white shadow-[0_14px_32px_rgba(11,28,51,0.28)] transition-colors duration-300 hover:bg-champagne hover:text-navy-950"
+            aria-label="نمایش تصویر بعدی"
+            className="absolute -bottom-5 start-[46%] inline-flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-white shadow-[0_14px_32px_rgba(11,28,51,0.28)] transition-colors duration-300 hover:bg-champagne hover:text-navy-950"
           >
-            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            <ArrowRight className="h-5 w-5 rtl:-scale-x-100" aria-hidden="true" />
           </button>
 
           <p aria-live="polite" className="sr-only">
-            Showing image {index + 1} of {total}
+            نمایش تصویر {(index + 1).toLocaleString('fa-IR')} از {total.toLocaleString('fa-IR')}
           </p>
         </Reveal>
       </div>

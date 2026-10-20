@@ -24,39 +24,42 @@ export const DEFAULT_FILTERS: PropertyFilters = {
 }
 
 export const PRICE_BANDS = [
-  { id: 'any', label: 'Any price', min: 0, max: Number.POSITIVE_INFINITY },
-  { id: 'under-2m', label: 'Under $2M', min: 0, max: 2_000_000 },
-  { id: '2m-3.5m', label: '$2M – $3.5M', min: 2_000_000, max: 3_500_000 },
-  { id: '3.5m-5m', label: '$3.5M – $5M', min: 3_500_000, max: 5_000_000 },
-  { id: 'over-5m', label: '$5M and above', min: 5_000_000, max: Number.POSITIVE_INFINITY },
+  { id: 'any', label: 'هر قیمتی', min: 0, max: Number.POSITIVE_INFINITY },
+  { id: 'under-2m', label: 'کمتر از ۲ میلیون دلار', min: 0, max: 2_000_000 },
+  { id: '2m-3.5m', label: '۲ تا ۳٫۵ میلیون دلار', min: 2_000_000, max: 3_500_000 },
+  { id: '3.5m-5m', label: '۳٫۵ تا ۵ میلیون دلار', min: 3_500_000, max: 5_000_000 },
+  { id: 'over-5m', label: '۵ میلیون دلار و بیشتر', min: 5_000_000, max: Number.POSITIVE_INFINITY },
 ] as const
 
 export const BED_OPTIONS = [
-  { id: 'any', label: 'Any' },
-  { id: '3', label: '3+' },
-  { id: '4', label: '4+' },
-  { id: '5', label: '5+' },
-  { id: '6', label: '6+' },
+  { id: 'any', label: 'هر تعداد' },
+  { id: '3', label: '۳ و بیشتر' },
+  { id: '4', label: '۴ و بیشتر' },
+  { id: '5', label: '۵ و بیشتر' },
+  { id: '6', label: '۶ و بیشتر' },
 ] as const
 
 export const BATH_OPTIONS = [
-  { id: 'any', label: 'Any' },
-  { id: '3', label: '3+' },
-  { id: '4', label: '4+' },
-  { id: '6', label: '6+' },
-  { id: '8', label: '8+' },
+  { id: 'any', label: 'هر تعداد' },
+  { id: '3', label: '۳ و بیشتر' },
+  { id: '4', label: '۴ و بیشتر' },
+  { id: '6', label: '۶ و بیشتر' },
+  { id: '8', label: '۸ و بیشتر' },
 ] as const
 
 export const SORT_OPTIONS: { id: SortKey; label: string }[] = [
-  { id: 'featured', label: 'Featured first' },
-  { id: 'price-asc', label: 'Price · low to high' },
-  { id: 'price-desc', label: 'Price · high to low' },
-  { id: 'newest', label: 'Newest built' },
-  { id: 'largest', label: 'Largest first' },
+  { id: 'featured', label: 'ویژه‌ها در ابتدا' },
+  { id: 'price-asc', label: 'قیمت · کم به زیاد' },
+  { id: 'price-desc', label: 'قیمت · زیاد به کم' },
+  { id: 'newest', label: 'تازه‌ترین ساخت' },
+  { id: 'largest', label: 'بزرگ‌ترین در ابتدا' },
 ]
 
+/** `city، region` — the Persian comma keeps the label typographically native. */
+export const locationLabel = (property: Property) => `${property.city}، ${property.region}`
+
 export const LOCATION_OPTIONS: string[] = Array.from(
-  new Set(PROPERTIES.map((property) => `${property.city}, ${property.region}`)),
+  new Set(PROPERTIES.map(locationLabel)),
 ).sort()
 
 export const TYPE_OPTIONS: PropertyType[] = Array.from(
@@ -70,7 +73,7 @@ export function filterProperties(list: Property[], filters: PropertyFilters): Pr
   const minBaths = filters.baths === 'any' ? 0 : Number(filters.baths)
 
   const matched = list.filter((property) => {
-    if (filters.location !== 'any' && `${property.city}, ${property.region}` !== filters.location) return false
+    if (filters.location !== 'any' && locationLabel(property) !== filters.location) return false
     if (filters.type !== 'any' && property.type !== filters.type) return false
     if (property.price < band.min || property.price > band.max) return false
     if (property.beds < minBeds) return false

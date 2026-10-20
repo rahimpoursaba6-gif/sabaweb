@@ -12,26 +12,27 @@ import { SectionHeading } from '@/components/ui/section-heading'
 import { formatPrice, getPropertyBySlug, getSimilarProperties } from '@/data/properties'
 import { TEAM } from '@/data/site'
 import { SITE_NAME, useDocumentTitle } from '@/hooks/use-document-title'
+import { fa } from '@/lib/fa'
 
 export default function PropertyDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const property = slug ? getPropertyBySlug(slug) : undefined
 
-  useDocumentTitle(property ? `${property.name} — ${SITE_NAME}` : `Property not found — ${SITE_NAME}`)
+  useDocumentTitle(property ? `${property.name} — ${SITE_NAME}` : `ملک پیدا نشد — ${SITE_NAME}`)
 
   if (!property) {
     return (
       <>
         <PageHero
-          label="Not found"
-          title="This property is no longer listed"
-          description="The residence may have been sold or withdrawn. Browse the current portfolio to see what is available today."
-          crumbs={[{ label: 'Home', to: '/' }, { label: 'Properties', to: '/properties' }, { label: 'Not found' }]}
+          label="پیدا نشد"
+          title="این ملک دیگر در فهرست نیست"
+          description="ممکن است این اقامتگاه فروخته یا از فهرست خارج شده باشد. برای دیدن املاک موجود امروز، فهرست کنونی را ببینید."
+          crumbs={[{ label: 'خانه', to: '/' }, { label: 'املاک', to: '/properties' }, { label: 'پیدا نشد' }]}
         />
         <section className="bg-white py-16 lg:py-20">
           <div className="shell">
             <Button to="/properties" size="lg">
-              Back to all properties
+              بازگشت به همه املاک
             </Button>
           </div>
         </section>
@@ -43,24 +44,24 @@ export default function PropertyDetailPage() {
   const similar = getSimilarProperties(property, 3)
 
   const stats: { label: string; value: string }[] = [
-    { label: 'Bedrooms', value: String(property.beds) },
-    { label: 'Bathrooms', value: String(property.baths) },
-    { label: 'Interior', value: `${property.sqft.toLocaleString('en-US')} sq ft` },
-    { label: 'Year built', value: String(property.yearBuilt) },
-    { label: 'Parking', value: `${property.parking} cars` },
-    { label: 'Lot', value: property.lotAcres > 0 ? `${property.lotAcres} acres` : 'Airspace only' },
+    { label: 'اتاق خواب', value: fa(property.beds) },
+    { label: 'حمام', value: fa(property.baths) },
+    { label: 'زیربنا', value: `${fa(property.sqft)} فوت مربع` },
+    { label: 'سال ساخت', value: fa(property.yearBuilt) },
+    { label: 'پارکینگ', value: `${fa(property.parking)} خودرو` },
+    { label: 'زمین', value: property.lotAcres > 0 ? `${fa(property.lotAcres)} ایکر` : 'بدون زمین اختصاصی' },
   ]
 
   return (
     <>
       <PageHero
-        label={property.status === 'New listing' ? 'New listing' : property.type}
+        label={property.status === 'فهرست جدید' ? 'فهرست جدید' : property.type}
         title={property.name}
         description={property.summary}
         image={property.images[0]?.src}
         crumbs={[
-          { label: 'Home', to: '/' },
-          { label: 'Properties', to: '/properties' },
+          { label: 'خانه', to: '/' },
+          { label: 'املاک', to: '/properties' },
           { label: property.name },
         ]}
       >
@@ -83,9 +84,9 @@ export default function PropertyDetailPage() {
             <PropertyGallery images={property.images} name={property.name} />
 
             <div className="mt-12">
-              <h2 className="display-md">About this residence</h2>
+              <h2 className="display-md">درباره این اقامتگاه</h2>
               {property.description.map((paragraph) => (
-                <p key={paragraph} className="mt-5 text-[15px] leading-[1.85] text-graphite">
+                <p key={paragraph} className="mt-5 text-[15px] leading-loose text-graphite">
                   {paragraph}
                 </p>
               ))}
@@ -94,7 +95,7 @@ export default function PropertyDetailPage() {
             <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-ink/10 pt-8 sm:grid-cols-3">
               {stats.map((stat) => (
                 <div key={stat.label}>
-                  <dt className="font-sans text-[10.5px] font-semibold uppercase tracking-label text-graphite/60">
+                  <dt className="font-sans text-[11px] font-semibold uppercase tracking-label text-graphite/60">
                     {stat.label}
                   </dt>
                   <dd className="mt-2 font-display text-[17px] font-medium text-ink">{stat.value}</dd>
@@ -104,22 +105,22 @@ export default function PropertyDetailPage() {
 
             <div className="mt-12 grid gap-10 sm:grid-cols-2">
               <div>
-                <h3 className="eyebrow">Key features</h3>
+                <h3 className="eyebrow">ویژگی‌های کلیدی</h3>
                 <ul className="mt-5 space-y-3">
                   {property.features.map((feature) => (
-                    <li key={feature} className="flex gap-3 text-sm leading-relaxed text-graphite">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
+                    <li key={feature} className="flex gap-3 text-sm leading-loose text-graphite">
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
                       {feature}
                     </li>
                   ))}
                 </ul>
               </div>
               <div>
-                <h3 className="eyebrow">Amenities</h3>
+                <h3 className="eyebrow">امکانات</h3>
                 <ul className="mt-5 space-y-3">
                   {property.amenities.map((amenity) => (
-                    <li key={amenity} className="flex gap-3 text-sm leading-relaxed text-graphite">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
+                    <li key={amenity} className="flex gap-3 text-sm leading-loose text-graphite">
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
                       {amenity}
                     </li>
                   ))}
@@ -130,31 +131,33 @@ export default function PropertyDetailPage() {
             <div className="mt-14">
               <InquiryForm
                 propertyName={property.name}
-                title="Ask the advisor about this residence"
-                description="Floor plans, service charges, viewing availability — send a note and we will answer the same day."
+                title="درباره این اقامتگاه از مشاور بپرسید"
+                description="نقشه طبقات، هزینه‌های مشترک، زمان بازدید — یادداشتی بفرستید تا همان روز پاسخ دهیم."
               />
             </div>
           </div>
 
           <aside className="flex min-w-0 flex-col gap-6 lg:sticky lg:top-28 lg:self-start">
             <div className="rounded-[12px] border border-ink/10 bg-white p-6 shadow-[0_1px_2px_rgba(11,28,51,0.05)]">
-              <p className="font-display text-[28px] font-medium leading-none text-navy-900">
+              <p className="font-display text-[26px] font-medium leading-tight text-navy-900">
                 {formatPrice(property.price)}
               </p>
-              <p className="mt-2 text-[13px] text-graphite/70">{property.type} · {property.location}</p>
+              <p className="mt-2 text-[13px] text-graphite/70">
+                {property.type} · {property.location}
+              </p>
 
               <dl className="mt-6 grid grid-cols-3 gap-4 border-y border-ink/10 py-5 text-center">
                 <div>
-                  <dt className="text-[10.5px] font-semibold uppercase tracking-label text-graphite/60">Beds</dt>
-                  <dd className="mt-1 font-display text-lg text-ink">{property.beds}</dd>
+                  <dt className="text-[11px] font-semibold uppercase tracking-label text-graphite/60">خواب</dt>
+                  <dd className="mt-1 font-display text-lg text-ink">{fa(property.beds)}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10.5px] font-semibold uppercase tracking-label text-graphite/60">Baths</dt>
-                  <dd className="mt-1 font-display text-lg text-ink">{property.baths}</dd>
+                  <dt className="text-[11px] font-semibold uppercase tracking-label text-graphite/60">حمام</dt>
+                  <dd className="mt-1 font-display text-lg text-ink">{fa(property.baths)}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10.5px] font-semibold uppercase tracking-label text-graphite/60">Sq ft</dt>
-                  <dd className="mt-1 font-display text-lg text-ink">{property.sqft.toLocaleString('en-US')}</dd>
+                  <dt className="text-[11px] font-semibold uppercase tracking-label text-graphite/60">فوت مربع</dt>
+                  <dd className="mt-1 font-display text-lg text-ink">{fa(property.sqft)}</dd>
                 </div>
               </dl>
 
@@ -162,21 +165,21 @@ export default function PropertyDetailPage() {
                 <ScheduleViewingDialog propertyName={property.name} variant="primary" className="w-full" />
                 <Button href={agent.phoneHref} variant="outline" className="w-full">
                   <Phone className="h-4 w-4" aria-hidden="true" />
-                  Call {agent.name.split(' ')[0]}
+                  تماس با {agent.name.split(' ')[0]}
                 </Button>
                 <div className="flex items-center justify-between gap-4 pt-1">
-                  <span className="text-[13px] text-graphite/70">Save for later</span>
+                  <span className="text-[13px] text-graphite/70">ذخیره برای بعد</span>
                   <FavoriteButton slug={property.slug} name={property.name} />
                 </div>
               </div>
             </div>
 
             <div className="rounded-[12px] border border-ink/10 bg-ivory p-6">
-              <h2 className="eyebrow">Your advisor</h2>
+              <h2 className="eyebrow">مشاور شما</h2>
               <div className="mt-5 flex items-center gap-4">
                 <img
                   src={agent.image}
-                  alt={`${agent.name}, ${agent.role}`}
+                  alt={`${agent.name}، ${agent.role}`}
                   width={900}
                   height={1125}
                   loading="lazy"
@@ -189,28 +192,30 @@ export default function PropertyDetailPage() {
                   </p>
                 </div>
               </div>
-              <p className="mt-5 text-sm leading-relaxed text-graphite/85">{agent.bio}</p>
+              <p className="mt-5 text-sm leading-loose text-graphite/85">{agent.bio}</p>
               <div className="mt-5 flex flex-col gap-3 text-sm">
                 <a
                   href={`mailto:${agent.email}?subject=${encodeURIComponent(property.name)}`}
                   className="inline-flex items-center gap-2 text-graphite transition-colors duration-300 hover:text-champagne"
                 >
-                  <Mail className="h-4 w-4" aria-hidden="true" />
-                  {agent.email}
+                  <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span dir="ltr" className="truncate">
+                    {agent.email}
+                  </span>
                 </a>
                 <a
                   href={agent.phoneHref}
                   className="inline-flex items-center gap-2 text-graphite transition-colors duration-300 hover:text-champagne"
                 >
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                  {agent.phone}
+                  <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span dir="ltr">{agent.phone}</span>
                 </a>
               </div>
               <Link
                 to="/team"
                 className="mt-5 inline-block text-[13px] font-medium text-navy-900 underline decoration-champagne/60 underline-offset-4 transition-colors hover:text-champagne"
               >
-                Meet the full team
+                آشنایی با کل تیم
               </Link>
             </div>
           </aside>
@@ -219,7 +224,7 @@ export default function PropertyDetailPage() {
 
       <section className="bg-ivory py-16 lg:py-24">
         <div className="shell">
-          <SectionHeading label="Similar properties" title="You may also like" />
+          <SectionHeading label="املاک مشابه" title="شاید این‌ها را هم بپسندید" />
           <ul className="mt-10 grid list-none gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {similar.map((item) => (
               <li key={item.id}>
@@ -236,10 +241,10 @@ export default function PropertyDetailPage() {
           <div>
             <p className="font-display text-[15px] font-medium text-navy-900">{formatPrice(property.price)}</p>
             <p className="text-[11px] text-graphite/70">
-              {property.city}, {property.region}
+              {property.city}، {property.region}
             </p>
           </div>
-          <ScheduleViewingDialog propertyName={property.name} label="Schedule viewing" variant="primary" />
+          <ScheduleViewingDialog propertyName={property.name} label="رزرو بازدید" variant="primary" />
         </div>
       </div>
       <div aria-hidden="true" className="h-[72px] bg-ivory lg:hidden" />

@@ -46,6 +46,18 @@
     @apply select-none;
   }
 
+  /* Persian numerals, phone numbers and emails read left-to-right. */
+  [dir='rtl'] input[type='tel'],
+  [dir='rtl'] input[type='email'],
+  [dir='rtl'] input[type='date'] {
+    direction: ltr;
+  }
+
+  [dir='rtl'] input[type='tel'],
+  [dir='rtl'] input[type='email'] {
+    text-align: right;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -68,29 +80,31 @@
   }
 
   .eyebrow {
-    @apply font-sans text-[11px] font-semibold uppercase tracking-label text-champagne;
+    @apply font-sans text-[12px] font-semibold uppercase tracking-label text-champagne;
   }
 
+  /* Persian sets deeper descenders than latin, so the original display scale
+     keeps its sizes but relaxes leading and drops negative tracking. */
   .display-xl {
     font-size: clamp(2.5rem, 6.1vw, 5rem);
-    line-height: 1.03;
-    letter-spacing: -0.02em;
+    line-height: 1.18;
+    letter-spacing: 0;
   }
 
   .display-lg {
     font-size: clamp(1.95rem, 4.2vw, 3.35rem);
-    line-height: 1.08;
-    letter-spacing: -0.018em;
+    line-height: 1.24;
+    letter-spacing: 0;
   }
 
   .display-md {
     font-size: clamp(1.45rem, 2.4vw, 2rem);
-    line-height: 1.18;
-    letter-spacing: -0.012em;
+    line-height: 1.32;
+    letter-spacing: 0;
   }
 
   .body-lg {
-    @apply text-[15px] leading-[1.7] sm:text-base sm:leading-[1.75];
+    @apply text-[15px] leading-[1.85] sm:text-base sm:leading-[1.9];
   }
 
   .hairline {

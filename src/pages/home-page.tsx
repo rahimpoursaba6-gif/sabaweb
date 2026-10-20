@@ -8,7 +8,7 @@ import { WhyChooseSection } from '@/components/sections/why-choose-section'
 import { SITE_NAME, useDocumentTitle } from '@/hooks/use-document-title'
 
 export default function HomePage() {
-  useDocumentTitle(`${SITE_NAME} — Exceptional Homes & Investments`)
+  useDocumentTitle(`${SITE_NAME} — خانه‌ها و سرمایه‌گذاری‌های استثنایی`)
 
   return (
     <>

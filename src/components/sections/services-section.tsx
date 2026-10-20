@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 
 import { SectionHeading } from '@/components/ui/section-heading'
 import { SERVICES, WHY_CHOOSE } from '@/data/site'
+import { faIndex } from '@/lib/fa'
 
 /**
  * Editorial services list — numbered rows and hairlines instead of icon cards,
- * with one architectural photograph holding the left column.
+ * with one architectural photograph holding the leading column.
  */
 export function ServicesSection() {
   return (
@@ -14,9 +15,9 @@ export function ServicesSection() {
       <div className="shell grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
-            label="Services"
-            title={<span id="services-heading">Advisory across the whole ownership cycle</span>}
-            description="From first valuation to the day you hand over the keys, one team stays with the file."
+            label="خدمات"
+            title={<span id="services-heading">مشاوره در سراسر چرخه مالکیت</span>}
+            description="از نخستین ارزش‌گذاری تا روزی که کلیدها را تحویل می‌دهید، یک تیم روی پرونده می‌ماند."
           />
           <figure className="group mt-10 overflow-hidden rounded-[10px] bg-mist">
             <img
@@ -39,13 +40,13 @@ export function ServicesSection() {
                 className="group flex items-start gap-5 py-7 transition-colors duration-300 sm:gap-8 sm:px-4"
               >
                 <span className="mt-1.5 font-sans text-[11px] font-semibold tracking-label text-champagne">
-                  {String(index + 1).padStart(2, '0')}
+                  {faIndex(index + 1)}
                 </span>
                 <span className="flex-1">
                   <span className="block font-display text-xl font-medium text-ink transition-colors duration-300 group-hover:text-navy-700 sm:text-[26px]">
                     {service.title}
                   </span>
-                  <span className="mt-2 block max-w-lg text-sm leading-relaxed text-graphite/80">
+                  <span className="mt-2 block max-w-lg text-sm leading-loose text-graphite/80">
                     {service.description}
                   </span>
                 </span>

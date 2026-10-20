@@ -12,11 +12,11 @@ export function WhyChooseSection() {
         height={1000}
         loading="lazy"
         decoding="async"
-        className="pointer-events-none absolute right-0 top-0 h-full w-1/2 object-cover opacity-25"
+        className="pointer-events-none absolute end-0 top-0 h-full w-1/2 object-cover opacity-25"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/95 to-navy-950/60"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/95 to-navy-950/60 rtl:bg-gradient-to-l"
       />
 
       <div className="shell relative grid gap-14 lg:grid-cols-2 lg:gap-20">
@@ -49,7 +49,7 @@ export function WhyChooseSection() {
             {WHY_CHOOSE.pillars.map((pillar) => (
               <li key={pillar.title} className="border-b border-white/12 py-7 first:pt-0">
                 <h3 className="font-display text-lg font-medium text-white">{pillar.title}</h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-white/65">{pillar.description}</p>
+                <p className="mt-3 max-w-md text-sm leading-loose text-white/65">{pillar.description}</p>
               </li>
             ))}
           </ul>

@@ -1,17 +1,21 @@
 /**
  * Brand-level content: navigation, contact details, section copy and the shared
  * architectural image pool. Property records live in `properties.ts`.
+ *
+ * The site is published in Persian (fa) and rendered right-to-left, so every
+ * user-facing string here is Persian. Machine-readable values (phone, email,
+ * URLs, slugs) stay latin.
  */
 
 export type NavLink = { label: string; to: string }
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'Home', to: '/' },
-  { label: 'Properties', to: '/properties' },
-  { label: 'About Us', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Team', to: '/team' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'خانه', to: '/' },
+  { label: 'املاک', to: '/properties' },
+  { label: 'درباره ما', to: '/about' },
+  { label: 'خدمات', to: '/services' },
+  { label: 'تیم', to: '/team' },
+  { label: 'تماس', to: '/contact' },
 ]
 
 export const CONTACT = {
@@ -19,34 +23,34 @@ export const CONTACT = {
   phoneHref: 'tel:+15552467890',
   email: 'hello@horizonproperties.com',
   emailHref: 'mailto:hello@horizonproperties.com',
-  officeLines: ['Horizon House, 118 Shoreline Drive', 'Austin, Texas 78701'],
-  hours: 'Mon – Fri · 9:00 – 18:00',
+  officeLines: ['خانه هورایزن، خیابان شورلاین، شماره ۱۱۸', 'آستین، تگزاس ۷۸۷۰۱'],
+  hours: 'دوشنبه تا جمعه · ۹:۰۰ تا ۱۸:۰۰',
   socials: [
-    { label: 'Instagram', href: 'https://www.instagram.com/' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-    { label: 'Facebook', href: 'https://www.facebook.com/' },
+    { id: 'instagram', label: 'اینستاگرام', href: 'https://www.instagram.com/' },
+    { id: 'linkedin', label: 'لینکدین', href: 'https://www.linkedin.com/' },
+    { id: 'facebook', label: 'فیسبوک', href: 'https://www.facebook.com/' },
   ],
 }
 
 export const HERO = {
   image: '/images/estate-01.jpg',
-  imageAlt: 'Modern glass villa with a lit infinity pool at dusk',
-  label: 'Private brokerage · Est. 2008',
-  headline: 'Discover Exceptional Homes & Investments',
+  imageAlt: 'ویلای شیشه‌ای مدرن با استخر بی‌نهایت روشن در هنگام غروب',
+  label: 'مشاور املاک خصوصی · از سال ۲۰۰۸',
+  headline: 'خانه‌ها و سرمایه‌گذاری‌های استثنایی را کشف کنید',
   description:
-    'Premium properties in prime locations. Find your dream home or the perfect investment with confidence.',
+    'املاک ممتاز در بهترین موقعیت‌ها. خانه رؤیایی یا سرمایه‌گذاری مناسب خود را با اطمینان پیدا کنید.',
 }
 
 export const ABOUT = {
-  label: 'About Us',
-  title: 'Who We Are',
-  body: 'At Horizon Properties, we connect people with extraordinary homes and smart investments. Integrity, transparency, and client satisfaction are at the heart of everything we do.',
+  label: 'درباره ما',
+  title: 'ما چه کسانی هستیم',
+  body: 'در هورایزن پراپرتیز، ما مردم را به خانه‌های کم‌نظیر و سرمایه‌گذاری‌های هوشمندانه وصل می‌کنیم. درستکاری، شفافیت و رضایت مشتری بنیاد همه کارهای ماست.',
   secondary:
-    'Our advisors represent a curated portfolio of architectural residences, waterfront estates and prime-city investments — each one vetted, valued and presented with care.',
-  cta: { label: 'Learn More', to: '/about' },
+    'مشاوران ما مجموعه‌ای گزیده از خانه‌های معمارانه، املاک ساحلی و سرمایه‌گذاری‌های مرکز شهر را ارائه می‌دهند — هر یک بررسی‌شده، ارزش‌گذاری‌شده و با وسواس معرفی می‌شود.',
+  cta: { label: 'بیشتر بدانید', to: '/about' },
   images: [
-    { src: '/images/estate-03.jpg', alt: 'Contemporary two-storey home with a landscaped courtyard' },
-    { src: '/images/estate-07.jpg', alt: 'Luxury residence garden terrace at golden hour' },
+    { src: '/images/estate-03.jpg', alt: 'خانه دوطبقه امروزی با حیاط محوطه‌سازی‌شده' },
+    { src: '/images/estate-07.jpg', alt: 'تراس باغ یک اقامتگاه لوکس در نور طلایی غروب' },
   ],
 }
 
@@ -57,68 +61,68 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
-    title: 'Luxury Home Sales',
+    title: 'فروش خانه‌های لوکس',
     description:
-      'Discreet representation for architectural homes, waterfront estates and one-of-a-kind residences.',
+      'نمایندگی محرمانه برای خانه‌های معمارانه، املاک ساحلی و اقامتگاه‌های تک‌نسخه.',
   },
   {
-    title: 'Property Investment',
+    title: 'سرمایه‌گذاری ملکی',
     description:
-      'Yield analysis, portfolio structuring and acquisition strategy for private and institutional buyers.',
+      'تحلیل بازدهی، ساخت‌دهی سبد دارایی و راهبرد خرید برای خریداران شخصی و نهادی.',
   },
   {
-    title: 'Property Marketing',
+    title: 'بازاریابی ملک',
     description:
-      'Editorial photography, film and targeted campaigns that place a residence in front of qualified buyers.',
+      'عکاسی ادیتوریال، فیلم و کمپین‌های هدفمند که یک اقامتگاه را در برابر خریداران واجد شرایط می‌گذارد.',
   },
   {
-    title: 'Real Estate Advisory',
+    title: 'مشاوره املاک',
     description:
-      'Independent counsel on timing, pricing and negotiation — before, during and after a transaction.',
+      'مشاوره مستقل درباره زمان عرضه، قیمت‌گذاری و مذاکره — پیش، در جریان و پس از معامله.',
   },
   {
-    title: 'Property Valuation',
+    title: 'ارزش‌گذاری ملک',
     description:
-      'Evidence-based valuations built on comparable sales, market data and on-site inspection.',
+      'ارزش‌گذاری مستند بر پایه فروش‌های مشابه، داده‌های بازار و بازدید حضوری.',
   },
   {
-    title: 'Relocation Services',
+    title: 'خدمات جابه‌جایی',
     description:
-      'End-to-end support for international buyers: search, diligence, legal coordination and settling in.',
+      'پشتیبانی کامل برای خریداران بین‌المللی: جست‌وجو، بررسی، هماهنگی حقوقی و اسکان.',
   },
 ]
 
 export const WHY_CHOOSE = {
-  label: 'Why Choose Horizon',
-  title: 'Quietly rigorous, from first viewing to closing',
+  label: 'چرا هورایزن',
+  title: 'دقیق و بی‌سر‌و‌صدا، از نخستین بازدید تا امضای سند',
   description:
-    'A boutique team that treats every acquisition as an architectural decision as much as a financial one.',
+    'تیمی کوچک که هر خرید را همان‌قدر که تصمیمی مالی است، تصمیمی معمارانه می‌داند.',
   pillars: [
     {
-      title: 'Off-market access',
-      description: 'A private network of owners and developers before a residence ever reaches the market.',
+      title: 'دسترسی خارج از بازار',
+      description: 'شبکه‌ای خصوصی از مالکان و سازندگان، پیش از آن‌که ملکی به بازار برسد.',
     },
     {
-      title: 'Evidence-led valuation',
-      description: 'Comparable sales, inspection and market data behind every price we recommend.',
+      title: 'ارزش‌گذاری مبتنی بر داده',
+      description: 'فروش‌های مشابه، بازدید فنی و داده‌های بازار پشت هر قیمتی که پیشنهاد می‌دهیم.',
     },
     {
-      title: 'One advisor, end to end',
-      description: 'The person who shows you the home negotiates it, and stays for the years after.',
+      title: 'یک مشاور، از ابتدا تا انتها',
+      description: 'همان کسی که خانه را به شما نشان می‌دهد، درباره آن مذاکره می‌کند و سال‌ها بعد هم در دسترس است.',
     },
     {
-      title: 'Global buyer network',
-      description: 'Qualified buyers across 32 markets, with multilingual advisory for cross-border moves.',
+      title: 'شبکه خریداران جهانی',
+      description: 'خریداران واجد شرایط در ۳۲ بازار، با مشاوره چندزبانه برای جابه‌جایی فرامرزی.',
     },
   ],
   stats: [
-    { value: '18', label: 'Years advising' },
-    { value: '480+', label: 'Residences placed' },
-    { value: '96%', label: 'Client satisfaction' },
-    { value: '32', label: 'Markets covered' },
+    { value: '۱۸', label: 'سال مشاوره' },
+    { value: '۴۸۰+', label: 'ملک واگذارشده' },
+    { value: '۹۶٪', label: 'رضایت مشتری' },
+    { value: '۳۲', label: 'بازار فعال' },
   ],
   image: '/images/estate-11.jpg',
-  imageAlt: 'Glass-walled residence reflecting its landscaped surroundings',
+  imageAlt: 'اقامتگاه شیشه‌ای با بازتاب محوطه سبز اطراف',
 }
 
 export type TeamMember = {
@@ -136,52 +140,52 @@ export type TeamMember = {
 export const TEAM: TeamMember[] = [
   {
     id: 'daniel-morgan',
-    name: 'Daniel Morgan',
-    role: 'Managing Director',
+    name: 'دانیال مورگان',
+    role: 'مدیرعامل',
     image: '/images/team-1.jpg',
     email: 'daniel.morgan@horizonproperties.com',
     phone: '(555) 246-7891',
     phoneHref: 'tel:+15552467891',
-    focus: 'Prime-city estates',
-    bio: 'Daniel founded Horizon Properties in 2008 and leads the firm’s private-client practice, negotiating the majority of its off-market transactions.',
+    focus: 'اقامتگاه‌های مرکز شهر',
+    bio: 'دانیال، هورایزن پراپرتیز را در سال ۲۰۰۸ بنیان گذاشت و رهبری بخش مشتریان خصوصی را بر عهده دارد؛ او بیشتر معاملات خارج از بازار شرکت را مذاکره می‌کند.',
   },
   {
     id: 'olivia-carter',
-    name: 'Olivia Carter',
-    role: 'Luxury Property Advisor',
+    name: 'اولیویا کارتر',
+    role: 'مشاور املاک لوکس',
     image: '/images/team-2.jpg',
     email: 'olivia.carter@horizonproperties.com',
     phone: '(555) 246-7892',
     phoneHref: 'tel:+15552467892',
-    focus: 'Waterfront & architect-designed homes',
-    bio: 'Olivia represents architectural and waterfront residences, pairing editorial marketing with a closely managed buyer list.',
+    focus: 'خانه‌های ساحلی و معمارانه',
+    bio: 'اولیویا نماینده اقامتگاه‌های معمارانه و ساحلی است و بازاریابی ادیتوریال را با فهرستی از خریداران که با دقت مدیریت می‌شود همراه می‌کند.',
   },
   {
     id: 'james-wilson',
-    name: 'James Wilson',
-    role: 'Investment Consultant',
+    name: 'جیمز ویلسون',
+    role: 'مشاور سرمایه‌گذاری',
     image: '/images/team-3.jpg',
     email: 'james.wilson@horizonproperties.com',
     phone: '(555) 246-7893',
     phoneHref: 'tel:+15552467893',
-    focus: 'Yield & portfolio strategy',
-    bio: 'James advises private and institutional investors on acquisition, yield modelling and long-term portfolio structure.',
+    focus: 'بازدهی و راهبرد سبد دارایی',
+    bio: 'جیمز به سرمایه‌گذاران شخصی و نهادی درباره خرید، مدل‌سازی بازدهی و ساختار بلندمدت سبد دارایی مشاوره می‌دهد.',
   },
   {
     id: 'sophia-bennett',
-    name: 'Sophia Bennett',
-    role: 'Senior Property Specialist',
+    name: 'سوفیا بنت',
+    role: 'متخصص ارشد املاک',
     image: '/images/team-4.jpg',
     email: 'sophia.bennett@horizonproperties.com',
     phone: '(555) 246-7894',
     phoneHref: 'tel:+15552467894',
-    focus: 'Relocation & international buyers',
-    bio: 'Sophia guides international buyers through search, diligence and relocation, coordinating legal and financial partners in each market.',
+    focus: 'جابه‌جایی و خریداران بین‌المللی',
+    bio: 'سوفیا خریداران بین‌المللی را در جست‌وجو، بررسی و جابه‌جایی همراهی می‌کند و شرکای حقوقی و مالی را در هر بازار هماهنگ می‌سازد.',
   },
 ]
 
 export const CTA_BANNER = {
-  headline: 'Ready to Find Your Perfect Property?',
-  description: 'Let our experts guide you to the right home or investment.',
-  button: { label: 'Get in Touch', to: '/contact' },
+  headline: 'آماده‌اید ملک مناسب خود را پیدا کنید؟',
+  description: 'بگذارید کارشناسان ما شما را به خانه یا سرمایه‌گذاری درست راهنمایی کنند.',
+  button: { label: 'تماس بگیرید', to: '/contact' },
 }

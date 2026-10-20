@@ -5,45 +5,45 @@ import { SITE_NAME, useDocumentTitle } from '@/hooks/use-document-title'
 
 const PROCESS = [
   {
-    step: '01',
-    title: 'Brief and search',
+    step: '۰۱',
+    title: 'گفت‌وگو و جست‌وجو',
     description:
-      'We start with the brief — budget, location, how you actually intend to use the house. Then we search the market and the private network on your behalf.',
+      'با شرح خواسته آغاز می‌کنیم — بودجه، موقعیت و این‌که واقعاً چگونه می‌خواهید از خانه استفاده کنید. سپس بازار و شبکه خصوصی را به نمایندگی از شما می‌گردیم.',
   },
   {
-    step: '02',
-    title: 'Viewings and diligence',
+    step: '۰۲',
+    title: 'بازدید و بررسی',
     description:
-      'Shortlisted residences are visited together. Structural, planning and service-charge questions are answered before they become conditions of sale.',
+      'خانه‌های منتخب را با هم بازدید می‌کنیم. پرسش‌های سازه‌ای، شهرسازی و هزینه‌های مشترک، پیش از آن‌که شرط معامله شوند، پاسخ می‌گیرند.',
   },
   {
-    step: '03',
-    title: 'Negotiation and handover',
+    step: '۰۳',
+    title: 'مذاکره و تحویل',
     description:
-      'We negotiate, coordinate legal and financial partners, and stay with you through completion, furnishing quotes and any works you plan.',
+      'مذاکره می‌کنیم، شرکای حقوقی و مالی را هماهنگ می‌کنیم و تا پایان کار، برآورد تجهیز و هر بازسازی که در نظر دارید، همراهتان می‌مانیم.',
   },
 ]
 
 export default function ServicesPage() {
-  useDocumentTitle(`Services — ${SITE_NAME}`)
+  useDocumentTitle(`خدمات — ${SITE_NAME}`)
 
   return (
     <>
       <PageHero
-        label="Services"
-        title="Advisory across the whole ownership cycle"
-        description="Six disciplines, one team. Whether you are selling an architectural home, building a portfolio or relocating a family, the same advisors stay on the file."
+        label="خدمات"
+        title="مشاوره در سراسر چرخه مالکیت"
+        description="شش تخصص، یک تیم. چه خانه‌ای معمارانه بفروشید، چه سبد دارایی بسازید یا خانواده‌ای را جابه‌جا کنید، همان مشاوران روی پرونده می‌مانند."
         image="/images/estate-12.jpg"
-        crumbs={[{ label: 'Home', to: '/' }, { label: 'Services' }]}
+        crumbs={[{ label: 'خانه', to: '/' }, { label: 'خدمات' }]}
       />
 
       <ServicesSection />
 
       <section aria-labelledby="process-heading" className="bg-ivory py-20 lg:py-28">
         <div className="shell">
-          <p className="eyebrow">How we work</p>
+          <p className="eyebrow">شیوه کار ما</p>
           <h2 id="process-heading" className="display-lg mt-4 max-w-2xl">
-            Three stages, no surprises
+            سه مرحله، بدون غافلگیری
           </h2>
 
           <ol className="mt-12 grid list-none gap-x-10 gap-y-12 lg:grid-cols-3">
